@@ -84,7 +84,9 @@ def render_segment_tab():
         st.markdown("#### 純金融資産別ファネル")
         asset_funnel = group_funnel(df, "_asset_band")
         asset_funnel = asset_funnel.sort_values("_asset_band")
-        st.dataframe(asset_funnel[[c for c in disp_cols if c in asset_funnel.columns].copy().rename(columns={"_age_band": "_asset_band"})], use_container_width=True)
+        asset_disp = [c for c in disp_cols if c in asset_funnel.columns]
+        asset_disp = ["_asset_band" if c == "_age_band" else c for c in asset_disp]
+        st.dataframe(asset_funnel[[c for c in asset_disp if c in asset_funnel.columns]], use_container_width=True)
 
     # 勝ち筋セグメント自動検出
     st.markdown("---")
