@@ -1,3 +1,11 @@
+import sys
+from pathlib import Path
+
+# Streamlit Cloud: ensure app root is on sys.path
+APP_DIR = Path(__file__).resolve().parent
+if str(APP_DIR) not in sys.path:
+    sys.path.insert(0, str(APP_DIR))
+
 import streamlit as st
 
 st.set_page_config(
